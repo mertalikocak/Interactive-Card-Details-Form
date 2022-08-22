@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body {
+  background-image: url(/images/bg-main-desktop.png);
+  background-repeat: no-repeat;
+  background-size: 33.5% 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.left {
+  width: 55%;
+  padding: 2rem;
+}
+
+.card-front,
+.card-back {
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 15rem;
+  max-width: 28rem;
+  justify-content: flex-end;
+  color: rgba(255, 255, 255, 0.788);
+  border-radius: 15px;
+  padding: 32px;
+  box-shadow: 3px 25px 20px rgba(0, 0, 0, 0.466);
+}
+
+.card-front {
+  background-image: url(/images/bg-card-front.png);
+
+  flex-direction: column;
+  margin: 0 auto 32px;
+  padding-bottom: 20px;
+}
+.card-front img {
+  width: 80px;
+  margin: 3px 0 auto 3px;
+}
+
+.card-front div {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px 0 10px;
+}
+
+.card-front > span {
+  align-self: center;
+  font-size: clamp(22px, 2.5vw, 27px);
+  margin-bottom: 35px;
+  letter-spacing: 2px;
+}
+
+.card-back {
+  background-image: url(/images/bg-card-back.png);
+  margin: 0 8rem 0 auto;
+  align-items: center;
+  padding-right: 3vw;
+  background-size: 100% 100%;
+}
+
+.card-back span {
+  font-size: clamp(22px, 2.5vw, 27px);
+}
+
+.right {
+  width: 45%;
+}
+@media screen and (min-width: 1350px) {
+  .form-container {
+    margin-left: 3.5rem;
+    padding-right: 10rem;
+  }
+}
+
+.form-container {
+  font-size: 15px;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 1rem;
+}
+
+.form-container input {
+  height: 50px;
+  border-radius: 10px;
+  border: 1px rgba(128, 128, 128, 0.384) solid;
+  padding: 16px;
+  font-size: 100%;
+}
+.form-container label {
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+::placeholder {
+  color: rgba(128, 128, 128, 0.507);
+}
+
+.date-cvc {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 20px;
+}
+.label-date {
+  width: 50%;
+}
+.label-cvc {
+  width: 50%;
+}
+
+.label-date div {
+  display: flex;
+  gap: 10px;
+}
+.label-date input {
+  width: 100%;
+}
+
+.disabled {
+  display: none;
+}
+.enabled {
+  animation: shake;
+  display: inline;
+  color: red;
+}
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+  color: red;
+}
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.button {
+  background-color: rgb(10, 1, 46);
+  color: white;
+  margin-top: 20px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.button:hover {
+  background-color: rgb(18, 3, 82);
+  cursor: pointer;
+}
+
+.complete {
+  font-size: 15px;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 1rem;
+  align-items: center;
+}
+
+.complete img {
+  width: 100px;
+  margin: auto 0 20px 0;
+}
+.complete button {
+  width: 25rem;
+  margin-top: 40px;
+}
+.complete h2 {
+  letter-spacing: 2px;
+  font-weight: light;
+  margin: 10px 0 10px 0;
+}
+.complete span {
+  margin: 20px 0 20px 0;
+  letter-spacing: 2px;
+  color: rgba(128, 128, 128, 0.801);
+}
+
+@media screen and (max-width: 1410px) {
+  .card-back {
+    margin: 0 auto;
+    padding-right: 4.6vw;
+  }
+  .complete {
+    width: 20rem;
+  }
+  .complete button {
+    width: 20rem;
+  }
+}
+@media screen and (max-width: 763px) {
+  body {
+    background-image: url(/images/bg-main-mobile.png);
+    height: 60%;
+    width: 100%;
+    background-size: 100% 300px;
+    position: absolute;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .left {
+    width: 100%;
+    margin-top: 330px;
+  }
+  .right {
+    width: 100%;
+  }
+  .card-front,
+  .card-back {
+    transform: scale(0.85);
+  }
+  .card-front {
+    position: absolute;
+    width: inherit;
+    left: 3rem;
+    top: 10rem;
+    z-index: 1;
+  }
+  .card-back {
+    position: absolute;
+    right: 3rem;
+    top: 2rem;
+    width: inherit;
+    padding-right: 10vw;
+  }
+  .complete {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .left {
+    margin-top: 300px;
+  }
+  .card-front,
+  .card-back {
+    transform: scale(0.8);
+    height: 14rem;
+  }
+  .card-front {
+    top: 8.4rem;
+    left: -1rem;
+  }
+  .card-back {
+    top: 2rem;
+    right: -1rem;
+  }
+}
+
+.unvisible {
+  display: none;
+}
+
+.attribution {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+}
+.attribution a {
+  color: rgb(0, 0, 0);
+  margin-left: 3px;
+}

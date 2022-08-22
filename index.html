@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Frontend Mentor | Interactive card details form</title>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="card-front">
+          <img src="./images/card-logo.svg" />
+          <span id="number-area">0000 0000 0000 0000</span>
+          <div>
+            <span id="name-area">Jane Appleseed</span
+            ><span id="date-area"
+              ><span id="date-area-mm">00</span> /
+              <span id="date-area-yy">00</span>
+            </span>
+          </div>
+        </div>
+        <div class="card-back"><span id="cvc-area">000</span></div>
+      </div>
+      <div class="right">
+        <div>
+          <form class="form-container">
+            <label class="label-name" for="name"
+              >CARDHOLDER NAME
+              <input
+                type="text"
+                name="nameUser"
+                placeholder="e.g. Jane Appleseed"
+                id="namearea"
+                required
+              />
+              <p class="disabled" id="wrong-name">Name are is not null</p>
+            </label>
+            <label class="label-number" for="card-number"
+              >CARD NUMBER
+              <input
+                type="text"
+                placeholder="e.g. 1234 5678 9123 0000"
+                name="number"
+                maxlength="19"
+                required
+              />
+              <p class="disabled" id="wrong-number">
+                Wrong format.Just use number and input 19 characters
+              </p>
+            </label>
+            <div class="date-cvc">
+              <label class="label-date" for="card-date"
+                >EXP. DATE (MM/YY)
+                <div>
+                  <input
+                    class="form-bottom-item"
+                    type="text"
+                    name="card-date-mm"
+                    placeholder="MM"
+                    minlength="2"
+                    maxlength="2"
+                    required
+                  />
+                  <input
+                    class="form-bottom-item"
+                    type="text"
+                    name="card-date-yy"
+                    placeholder="YY"
+                    minlength="2"
+                    maxlength="2"
+                    required
+                  />
+                </div>
+                <p class="disabled" id="wrong-date">
+                  Wrong format.Just use number and input 2 characters
+                </p>
+              </label>
+
+              <label class="label-cvc" for="card-number"
+                >CVC
+                <input
+                  class="form-bottom-item"
+                  type="text"
+                  name="card-cvc"
+                  placeholder=" e.g. 123"
+                  minlength="3"
+                  maxlength="3"
+                  required
+                />
+                <p class="disabled" id="wrong-cvc">
+                  Wrong format.Just use number and input 3 characters
+                </p>
+              </label>
+            </div>
+
+            <button class="button" id="confirm">Confirm</button>
+          </form>
+          <div class="complete unvisible">
+            <img src="/images/icon-complete.svg" />
+            <h2>THANK YOU!</h2>
+            <span>We've added your card details.</span>
+            <button class="button" id="contiune" onclick="handleContinue()">
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
+        Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/mertalikocak" target="_blank">
+        Mert Ali Koçak</a
+      >.
+    </div>
+
+    <script>
+      const nameInput = document.querySelector("[name='nameUser']");
+      const numberInput = document.querySelector("[name='number']");
+      const mmInput = document.querySelector("[name='card-date-mm']");
+      const yyInput = document.querySelector("[name='card-date-yy']");
+      const cvcInput = document.querySelector("[name='card-cvc']");
+      const nameArea = document.querySelector("#name-area");
+      const numberArea = document.querySelector("#number-area");
+      const dateAreaMM = document.querySelector("#date-area-mm");
+      const dateAreaYY = document.querySelector("#date-area-yy");
+      const cvcArea = document.querySelector("#cvc-area");
+      const button = document.querySelector("#confirm");
+      const continueButton = document.querySelector("#continue");
+      const complete = document.querySelector(".complete");
+      const form = document.querySelector(".form-container");
+
+      var i = 0;
+      function countIncrease(e) {
+        if (e.target.value.length == 4) {
+          if (e.key == "Backspace") {
+            e.target.value = e.target.value.substr(0, 3);
+          }
+          e.target.value += " ";
+        } else if (e.target.value.length == 9) {
+          if (e.key == "Backspace") {
+            e.target.value = e.target.value.substr(0, 8);
+          }
+          e.target.value += " ";
+        } else if (e.target.value.length == 14) {
+          if (e.key == "Backspace") {
+            e.target.value = e.target.value.substr(0, 13);
+          }
+          e.target.value += " ";
+        }
+      }
+      function onChange(e) {
+        e.target.value = e.target.value.toUpperCase();
+        if (e.target.name === "nameUser") {
+          nameArea.innerHTML = e.target.value.toUpperCase();
+        } else if (e.target.name === "number") {
+          numberArea.innerHTML = e.target.value;
+        } else if (e.target.name == "card-date-mm") {
+          dateAreaMM.innerHTML = e.target.value;
+        } else if (e.target.name == "card-date-yy") {
+          dateAreaYY.innerHTML = e.target.value;
+        } else if (e.target.name == "card-cvc") {
+          cvcArea.innerHTML = e.target.value;
+        }
+      }
+      function onlyNumberKey(evt) {
+        // Only ASCII character in that range allowed
+        if (evt.target.name === "nameUser") {
+          return true;
+        }
+        var ASCIICode = evt.which ? evt.which : evt.keyCode;
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) {
+          evt.preventDefault();
+          return false;
+        }
+        return true;
+      }
+
+      function errorHandler(e) {
+        if (!parseInt(numberInput.value) || numberInput.value.length < 19) {
+          e.preventDefault();
+          document.getElementById("wrong-number").innerHTML =
+            "Wrong format.Just use number and input 19 characters";
+          document.getElementById("wrong-number").className = "shake";
+          setTimeout(() => {
+            document.getElementById("wrong-number").className = "enabled";
+          }, 1000);
+        } else {
+          document.getElementById("wrong-number").className = "disabled";
+        }
+        if (!parseInt(mmInput.value) || mmInput.value.length < 2) {
+          e.preventDefault();
+          document.getElementById("wrong-date").className = "shake";
+          setTimeout(() => {
+            document.getElementById("wrong-date").className = "enabled";
+          }, 1000);
+        } else {
+          document.getElementById("wrong-date").className = "disabled";
+        }
+        if (!parseInt(yyInput.value) || yyInput.value.length < 2) {
+          e.preventDefault();
+          document.getElementById("wrong-date").className = "shake";
+          setTimeout(() => {
+            document.getElementById("wrong-date").className = "enabled";
+          }, 1000);
+        } else {
+          document.getElementById("wrong-date").className = "disabled";
+        }
+        if (!parseInt(cvcInput.value) || cvcInput.value.length < 3) {
+          e.preventDefault();
+          document.getElementById("wrong-cvc").className = "shake";
+          setTimeout(() => {
+            document.getElementById("wrong-cvc").className = "enabled";
+          }, 1000);
+        } else {
+          document.getElementById("wrong-cvc").className = "disabled";
+        }
+      }
+
+      function handleContinue() {
+        history.go(0);
+      }
+
+      function onSubmit(e) {
+        complete.classList.remove("unvisible");
+        form.classList.add("unvisible");
+        e.preventDefault();
+      }
+
+      numberInput.addEventListener("keydown", countIncrease);
+      addEventListener("keyup", onChange);
+      button.addEventListener("click", errorHandler);
+      form.addEventListener("submit", onSubmit);
+    </script>
+  </body>
+</html>
