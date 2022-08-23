@@ -66,7 +66,7 @@ body {
 
 .card-back {
   background-image: url(/images/bg-card-back.png);
-  margin: 0 8rem 0 auto;
+  margin: 0 2rem 0 auto;
   align-items: center;
   padding-right: 3vw;
   background-size: 100% 100%;
@@ -226,7 +226,7 @@ body {
   color: rgba(128, 128, 128, 0.801);
 }
 
-@media screen and (max-width: 1410px) {
+@media screen and (max-width: 1060px) {
   .card-back {
     margin: 0 auto;
     padding-right: 4.6vw;
